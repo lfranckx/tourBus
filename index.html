@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tour Bus - Find venues around the world!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Tour Bus</h1>
+            <h3>Your best resource for finding live music venues.</h3>
+            <form>
+                <input type="text" name="search-term" id="js-search-term" placeholder="Enter in a city">
+                <input type="submit" name="submit" id="js-submit" value="search">
+            </form>
+        </header>
+        
+        <main>
+            <p id="js-error-message"></p>
+
+            <section id="results" class="hidden">
+                <ul id="results-list"></ul>
+            </section>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+    </body>
+
+</html>
