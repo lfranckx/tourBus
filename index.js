@@ -1,5 +1,8 @@
-const key = "AIzaSyC1HapLKiQEa0kqzv54kEFdpdyn4TV8Ktw";
-const baseURL = "";
+const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
+const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
+
+
+$(watchForm)
 
 function watchForm() {
     $('form').submit(event => {
@@ -11,10 +14,11 @@ function watchForm() {
 
 function getResults(searchTerm) {
     const params = {
-        query: "Live Music Venue",
-        location: searchTerm,
-        radius: '16100'
-        apikey: key
+        key: apikey,
+        city: searchTerm,
+        keyword: 'music'
+        // radius: '12',
+        // unit: 'miles',
     }
     const queryString = formatQueryParams(params);
     const url = baseURL + '?' + queryString;
@@ -33,26 +37,15 @@ function getResults(searchTerm) {
         })
 }
 
-function displayResults(responseJson) {
-    console.log(responseJson);
-
-    //remove any prior results
-    $('#results-list').empty();
-    // for 
-    for (let i = 0; i < responseJson.data.length; i++) {
-        $('#results-list').append(
-            `<li>${responseJson.}`
-        )
-    }
-}
-
 function formatQueryParams(params) {
     // declare variable for key values
-    const queryItems = Object.keys(params);
+    const queryItems = Object.keys(params)
     // map object into a string and turn : into =
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     // join string together with &
     return queryItems.join('&');
 }
 
-$(watchFrom)
+function displayResults(responseJson) {
+    console.log(responseJson);
+}
