@@ -14,11 +14,12 @@ function watchForm() {
 
 function getResults(searchTerm) {
     const params = {
-        key: apikey,
+        apikey: apikey,
         city: searchTerm,
-        keyword: 'music'
-        // radius: '12',
-        // unit: 'miles',
+        keyword: 'music',
+        sort: 'date,asc',
+        radius: 12,
+        unit: 'miles'
     }
     const queryString = formatQueryParams(params);
     const url = baseURL + '?' + queryString;
@@ -48,4 +49,13 @@ function formatQueryParams(params) {
 
 function displayResults(responseJson) {
     console.log(responseJson);
+    //empty out any prior results
+    $('#results-list').empty();
+    let list = responseJson["_embedded"]["events"];
+    for (let i = 0; i < list.length;) {
+        $('#results-list').append(
+        `<li class="show-name">${list[i].name}</li>`
+        )
+    }
+    $('#results').removeClass('hidden');
 }
