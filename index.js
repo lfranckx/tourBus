@@ -51,10 +51,9 @@ function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
     $('#results-list').empty();
-    let list = responseJson["_embedded"]["events"];
-    for (let i = 0; i < list.length;) {
+    for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         $('#results-list').append(
-        `<li class="show-name">${list[i].name}</li>`
+        `<li class="show-name">${responseJson["_embedded"]["events"].name}</li>`
         )
     }
     $('#results').removeClass('hidden');

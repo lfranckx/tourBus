@@ -39,3 +39,7 @@ input {
     border-radius: 3px;
     padding: 5px;
 }
+
+li {
+    list-style-type: none;
+}
