@@ -23,6 +23,7 @@ function getResults(searchTerm) {
         })
         .then(responseJson => displayResults(responseJson))
         .catch(err => {
+            $('#js-error-message').removeClass('hidden');
             $('#js-error-message').text(`Error: ${err.message}`);
         })
 }
@@ -52,7 +53,6 @@ function displayResults(responseJson) {
                 <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}">Buy Tickets</a></li>
                 </ul>`)
     }
-    $('#js-error-message').remove();
     $('#next-button').removeClass('hidden');
     $('#results').removeClass('hidden');
 }
@@ -62,7 +62,10 @@ function nextPageResults(responseJson) {
         console.log("getting next page results");
         event.preventDefault();
         $('#results').empty();
-    })
+        let pageNum = responseJson.page.number;
+        pageNum++;
+        displayResults(pageNum);
+    });
 }
 
 function watchForm() {

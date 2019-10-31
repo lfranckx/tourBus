@@ -26,15 +26,15 @@ form {
     align-items: center;
 }
 
-
-label {
-    font-size: 1em;
-}
-
 input {
     font-size: .8em;
     border-radius: 3px;
     padding: 5px;
+}
+
+/* Results Section */
+main {
+    text-align: center;
 }
 
 ul {
