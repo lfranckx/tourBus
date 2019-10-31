@@ -13,7 +13,7 @@ function getResults(searchTerm, pageNum) {
     }
     const queryString = formatQueryParams(params);
     const url = baseURL + '?' + queryString;
-    console.log(url);
+    // console.log(url);
 
     fetch(url)
         .then(response => {
@@ -70,6 +70,7 @@ function prevPageResults(responseJson) {
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
         let pageNum = responseJson.page.number;
+        console.log(pageNum);
         pageNum--;
         console.log(pageNum);
         getResults(searchTerm, pageNum);
@@ -82,6 +83,7 @@ function nextPageResults(responseJson) {
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
         let pageNum = responseJson.page.number;
+        console.log(pageNum);
         pageNum++;
         console.log(pageNum);
         getResults(searchTerm, pageNum);
