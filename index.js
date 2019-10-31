@@ -54,15 +54,31 @@ function displayResults(responseJson) {
                 <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}">Buy Tickets</a></li>
                 </ul>`)
     }
+    if (responseJson.page.number >= 1) {
+        $('#prev-button').removeClass('hidden');
+    }
     $('#next-button').removeClass('hidden');
     $('#results').removeClass('hidden');
+
+    prevPageResults(responseJson);
     nextPageResults(responseJson);
 }
 
+function prevPageResults(responseJson) {
+    $('#prev-button').click(event => {
+        console.log(responseJson.page.number);
+        event.preventDefault();
+        $('#results').empty();
+        const searchTerm = $('#js-search-term').val();
+        let pageNum = responseJson.page.number;
+        pageNum--;
+        getResults(searchTerm, pageNum);
+    });
+}
+
 function nextPageResults(responseJson) {
-    console.log(responseJson);
-    console.log(responseJson.page.number);
     $('#next-button').click(event => {
+        console.log(responseJson.page.number);
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
@@ -82,4 +98,3 @@ function watchForm() {
 }
 
 $(watchForm);
-$(nextPageResults);
