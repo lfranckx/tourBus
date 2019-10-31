@@ -1,14 +1,15 @@
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
 
-function getResults(searchTerm) {
+function getResults(searchTerm, pageNum) {
     const params = {
         apikey: apikey,
         city: searchTerm,
         keyword: 'music',
         sort: 'date,asc',
         radius: 12,
-        unit: 'miles'
+        unit: 'miles',
+        page: pageNum
     }
     const queryString = formatQueryParams(params);
     const url = baseURL + '?' + queryString;
@@ -62,9 +63,10 @@ function nextPageResults(responseJson) {
         console.log("getting next page results");
         event.preventDefault();
         $('#results').empty();
+        const searchTerm = $('#js-search-term').val();
         let pageNum = responseJson.page.number;
         pageNum++;
-        displayResults(pageNum);
+        getResults(searchTerm, pageNum);
     });
 }
 
@@ -72,7 +74,8 @@ function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('#js-search-term').val();
-        getResults(searchTerm);
+        let pageNum = 0;
+        getResults(searchTerm, pageNum);
     });
 }
 
