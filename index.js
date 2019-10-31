@@ -78,7 +78,6 @@ function prevPageResults(responseJson) {
 
 function nextPageResults(responseJson) {
     $('#next-button').click(event => {
-        console.log(responseJson.page.number);
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
