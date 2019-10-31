@@ -56,6 +56,7 @@ function displayResults(responseJson) {
     }
     $('#next-button').removeClass('hidden');
     $('#results').removeClass('hidden');
+    nextPageResults(responseJson);
 }
 
 function nextPageResults(responseJson) {
