@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Tour Bus - Find live music in your city</title>
+        <title>Tour Bus - Find Live Music</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,16 +14,17 @@
             <h3>Find live music near you.</h3>
             <form>
                 <input type="text" name="search-term" id="js-search-term" placeholder="Enter in a city">
-                <input type="submit" name="submit" id="js-submit" value="search">
+                <input type="submit" name="submit" id="js-submit" value="Search">
             </form>
         </header>
         
         <main>
-            <p id="js-error-message"></p>
 
+            <p id="js-error-message"></p>
             <section id="results" class="hidden">
-                <ul id="results-list"></ul>
             </section>
+            <input id="next-button" class="hidden" type="submit" value="Next"></input>
+
         </main>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script src="index.js"></script>

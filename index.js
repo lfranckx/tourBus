@@ -1,17 +1,6 @@
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
 
-
-$(watchForm)
-
-function watchForm() {
-    $('form').submit(event => {
-        event.preventDefault();
-        const searchTerm = $('#js-search-term').val();
-        getResults(searchTerm);
-    });
-}
-
 function getResults(searchTerm) {
     const params = {
         apikey: apikey,
@@ -50,11 +39,39 @@ function formatQueryParams(params) {
 function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
-    $('#results-list').empty();
+    $('#results').empty();
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
-        $('#results-list').append(
-        `<li class="show-name">${responseJson["_embedded"]["events"].name}</li>`
-        )
+            $('#results').append(
+                `<ul class="show-container">
+                <li class="show-date">${responseJson["_embedded"]["events"][i].dates.start.localDate}</li>
+                <li class="show-name">${responseJson["_embedded"]["events"][i].name}</li>
+                <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
+                <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
+                <li class="show-address">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1}</li>
+                <li class="show-address">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name}</li>
+                <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}">Buy Tickets</a></li>
+                </ul>`)
     }
+    $('#js-error-message').remove();
+    $('#next-button').removeClass('hidden');
     $('#results').removeClass('hidden');
 }
+
+function nextPageResults(responseJson) {
+    $('#next-button').click(event => {
+        console.log("getting next page results");
+        event.preventDefault();
+        $('#results').empty();
+    })
+}
+
+function watchForm() {
+    $('form').submit(event => {
+        event.preventDefault();
+        const searchTerm = $('#js-search-term').val();
+        getResults(searchTerm);
+    });
+}
+
+$(watchForm);
+$(nextPageResults);

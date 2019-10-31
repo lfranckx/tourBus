@@ -4,12 +4,9 @@
     font-family: 'roboto', sans-serif;
 }
 
-body {
+header {
     text-align: center;
     display: block;
-}
-
-header {
     padding: 150px;
 }
 
@@ -40,6 +37,27 @@ input {
     padding: 5px;
 }
 
+ul {
+    display: inline;
+}
+
 li {
     list-style-type: none;
+}
+
+.show-container {
+    text-align: center;
+}
+
+.show-date {
+    margin-top: 10px;
+}
+
+.thumbnail {
+    max-height: 240px;
+    max-width: 300px;
+}
+
+.hidden {
+    display: none;
 }
