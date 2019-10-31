@@ -60,8 +60,9 @@ function displayResults(responseJson) {
 }
 
 function nextPageResults(responseJson) {
+    console.log(responseJson);
+    console.log(responseJson.page.number);
     $('#next-button').click(event => {
-        console.log("getting next page results");
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
