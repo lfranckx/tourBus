@@ -66,12 +66,12 @@ function displayResults(responseJson) {
 
 function prevPageResults(responseJson) {
     $('#prev-button').click(event => {
-        console.log(responseJson.page.number);
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
         let pageNum = responseJson.page.number;
         pageNum--;
+        console.log(pageNum);
         getResults(searchTerm, pageNum);
     });
 }
@@ -84,6 +84,7 @@ function nextPageResults(responseJson) {
         const searchTerm = $('#js-search-term').val();
         let pageNum = responseJson.page.number;
         pageNum++;
+        console.log(pageNum);
         getResults(searchTerm, pageNum);
     });
 }
