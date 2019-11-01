@@ -1,5 +1,6 @@
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
+let pageNum = 0;
 
 function getResults(searchTerm, pageNum) {
     const params = {
@@ -25,7 +26,7 @@ function getResults(searchTerm, pageNum) {
         .then(responseJson => displayResults(responseJson))
         .catch(err => {
             $('#js-error-message').removeClass('hidden');
-            $('#js-error-message').text(`Error: ${err.message}`);
+            $('#js-error-message').text(`Cannot locate your city.  Please try a different city.`);
         })
 }
 
@@ -42,23 +43,37 @@ function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
     $('#results').empty();
+
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
-            $('#results').append(
-                `<ul class="show-container">
-                <li class="show-date">${responseJson["_embedded"]["events"][i].dates.start.localDate}</li>
-                <li class="show-name">${responseJson["_embedded"]["events"][i].name}</li>
-                <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
-                <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
-                <li class="show-address">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1}</li>
-                <li class="show-address">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name}</li>
-                <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}">Buy Tickets</a></li>
-                </ul>`)
+        let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
+        let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
+
+        $('#results').append(
+            `<ul class="show-container">
+            <li class="show-date">${responseJson["_embedded"]["events"][i].dates.start.localDate}</li>
+            <li class="show-name">${responseJson["_embedded"]["events"][i].name}</li>
+            <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
+            <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
+            <li class="show-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
+            <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
+            </ul>`)
     }
-    if (responseJson.page.number >= 1) {
+
+    let currentPage = responseJson.page.number;
+    let totalPages = responseJson.page.totalPages;
+
+    // show results
+    // show next page button
+    $('#results').removeClass('hidden');
+    $('#next-button').removeClass('hidden');
+    // show previous page button
+    if (currentPage >= 1) {
         $('#prev-button').removeClass('hidden');
     }
-    $('#next-button').removeClass('hidden');
-    $('#results').removeClass('hidden');
+    // remove next page button if on last page
+    if (currentPage === totalPages-1) {
+        $('#next-button').addClass('hidden');
+    }
 }
 
 function prevPageResults(responseJson) {
@@ -83,8 +98,6 @@ function nextPageResults(responseJson) {
         getResults(searchTerm, pageNum);
     });
 }
-
-let pageNum = 0;
 
 function watchForm() {
     $('form').submit(event => {
