@@ -69,9 +69,8 @@ function prevPageResults(responseJson) {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
-        let pageNum = responseJson.page.number;
         // console.log(pageNum);
-        pageNum--;
+        pageNum = Math.max(0, pageNum - 1);
         console.log(pageNum);
         getResults(searchTerm, pageNum);
     });
@@ -82,19 +81,19 @@ function nextPageResults(responseJson) {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
-        let pageNum = responseJson.page.number;
-        // console.log(pageNum);
-        pageNum++;
+        pageNum++
         console.log(pageNum);
         getResults(searchTerm, pageNum);
     });
 }
 
+// this is a global variable because it does not exist within a block
+let pageNum = 0;
+
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('#js-search-term').val();
-        let pageNum = 0;
         getResults(searchTerm, pageNum);
     });
 }
