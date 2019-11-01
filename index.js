@@ -59,9 +59,6 @@ function displayResults(responseJson) {
     }
     $('#next-button').removeClass('hidden');
     $('#results').removeClass('hidden');
-
-    prevPageResults(responseJson);
-    nextPageResults(responseJson);
 }
 
 function prevPageResults(responseJson) {
@@ -87,7 +84,6 @@ function nextPageResults(responseJson) {
     });
 }
 
-// this is a global variable because it does not exist within a block
 let pageNum = 0;
 
 function watchForm() {
@@ -95,6 +91,8 @@ function watchForm() {
         event.preventDefault();
         const searchTerm = $('#js-search-term').val();
         getResults(searchTerm, pageNum);
+        prevPageResults();
+        nextPageResults();
     });
 }
 
