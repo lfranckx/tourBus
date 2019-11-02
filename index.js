@@ -51,13 +51,13 @@ function displayResults(responseJson) {
         let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
         // let artistSite = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
         $('#results').append(
-        `<ul class="show-container">
-        <li class="show-date">${date.substring(5)}</li>
-        <li class="show-name">${responseJson["_embedded"]["events"][i].name}</li>
-        <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
-        <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
-        <li class="show-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
-        <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
+        `<ul class="event-container">
+        <li class="event-date">${date.substring(5)}</li>
+        <li class="event-name">${responseJson["_embedded"]["events"][i].name}</li>
+        <li class="event-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
+        <li class="event-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
+        <li class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
+        <li class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
         </ul>`)
     }
 
