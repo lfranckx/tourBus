@@ -1,5 +1,6 @@
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
+// declare global variable for page number to use in change page functions
 let pageNum = 0;
 
 function getResults(searchTerm, pageNum) {
@@ -43,34 +44,31 @@ function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
     $('#results').empty();
-
+    //iterate through json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
         let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
-        let artist = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0];
-        if (artist.hasOwnProperty('externalLinks') === true){
-            let artistSite = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
-            $('#results').append(
-                `<ul class="show-container">
-                <li class="show-date">${date}</li>
-                <li class="show-name"><a href="${artistSite}" target="_blank">${artist.name}</a></li>
-                <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
-                <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
-                <li class="show-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
-                <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
-                </ul>`)
-        }
+        // let artistSite = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
+        $('#results').append(
+        `<ul class="show-container">
+        <li class="show-date">${date.substring(5)}</li>
+        <li class="show-name">${responseJson["_embedded"]["events"][i].name}</li>
+        <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
+        <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
+        <li class="show-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
+        <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
+        </ul>`)
     }
 
     let currentPage = responseJson.page.number;
     let totalPages = responseJson.page.totalPages;
 
     // show results
-    // show next page button
     $('#results').removeClass('hidden');
+    // show next page button
     $('#next-button').removeClass('hidden');
-    // show previous page button
+    // show previous page button if on page higher than 1st page
     if (currentPage >= 1) {
         $('#prev-button').removeClass('hidden');
     }
@@ -78,10 +76,14 @@ function displayResults(responseJson) {
     if (currentPage === totalPages-1) {
         $('#next-button').addClass('hidden');
     }
+    // remove previous page button if on first page
+    if (currentPage === 0) {
+        $('#prev-button').addClass('hidden');
+    }
 }
 
 function prevPageResults(responseJson) {
-    $('#prev-button').click(event => {
+    $(document).on('click', '#prev-button', event => {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
@@ -93,7 +95,7 @@ function prevPageResults(responseJson) {
 }
 
 function nextPageResults(responseJson) {
-    $('#next-button').click(event => {
+    $(document).on('click', '#next-button', event => {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();

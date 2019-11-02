@@ -11,14 +11,16 @@
     <body>
         <header>
             <h1>Tour Bus</h1>
-            <h3>Find live music near you.</h3>
             <form>
-                <input type="text" name="search-term" id="js-search-term" placeholder="Enter in a city">
+                <input type="text" name="search-term" id="js-search-term" placeholder="Search by city">
                 <input type="submit" name="submit" id="js-submit" value="Search">
             </form>
+            <h3>Find live music near you.</h3>
         </header>
         
         <main>
+                <input id="prev-button" class="hidden" type="submit" value="Back"></input>
+                <input id="next-button" class="hidden" type="submit" value="Next"></input>
             <section id="results" class="hidden"></section>
             <p id="js-error-message" class="hidden"></p>
             <input id="prev-button" class="hidden" type="submit" value="Back"></input>

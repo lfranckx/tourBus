@@ -5,32 +5,23 @@
 }
 
 header {
+    padding: 15px;
     text-align: center;
-    display: block;
-    padding: 150px;
+    display: flex;
+    justify-content: space-between;
 }
 
-h1 {
-    font-size: 4em;
-    margin-bottom: 20px;
-}
-
-h3, form, input {
-    margin: 10px;
+h1, h3, form, input {
     font-size: 1.5em;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 input {
     font-size: .8em;
     border-radius: 3px;
     padding: 5px;
 }
+
 
 /* Results Section */
 main {
@@ -54,8 +45,8 @@ li {
 }
 
 .thumbnail {
-    max-height: 240px;
-    max-width: 300px;
+    height: 240px;
+    width: 300px;
 }
 
 .hidden {
