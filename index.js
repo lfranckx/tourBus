@@ -104,7 +104,6 @@ function nextPageResults(responseJson) {
         getResults(searchTerm, pageNum);
     });
 }
-
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();

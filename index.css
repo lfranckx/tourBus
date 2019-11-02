@@ -36,11 +36,11 @@ li {
     list-style-type: none;
 }
 
-.show-container {
+.event-container {
     text-align: center;
 }
 
-.show-date {
+.event-date {
     margin-top: 10px;
 }
 
