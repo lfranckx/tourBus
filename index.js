@@ -10,11 +10,11 @@ function getResults(searchTerm, pageNum) {
         sort: 'date,asc',
         radius: 12,
         unit: 'miles',
+        size: 10,
         page: pageNum
     }
     const queryString = formatQueryParams(params);
     const url = baseURL + '?' + queryString;
-    // console.log(url);
 
     fetch(url)
         .then(response => {
@@ -26,7 +26,7 @@ function getResults(searchTerm, pageNum) {
         .then(responseJson => displayResults(responseJson))
         .catch(err => {
             $('#js-error-message').removeClass('hidden');
-            $('#js-error-message').text(`Cannot locate your city.  Please try a different city.`);
+            $('#js-error-message').text(`${err.message}`);
         })
 }
 
@@ -47,16 +47,20 @@ function displayResults(responseJson) {
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
-
-        $('#results').append(
-            `<ul class="show-container">
-            <li class="show-date">${responseJson["_embedded"]["events"][i].dates.start.localDate}</li>
-            <li class="show-name">${responseJson["_embedded"]["events"][i].name}</li>
-            <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
-            <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
-            <li class="show-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
-            <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
-            </ul>`)
+        let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
+        let artist = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0];
+        if (artist.hasOwnProperty('externalLinks') === true){
+            let artistSite = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
+            $('#results').append(
+                `<ul class="show-container">
+                <li class="show-date">${date}</li>
+                <li class="show-name"><a href="${artistSite}" target="_blank">${artist.name}</a></li>
+                <li class="show-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
+                <li class="show-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
+                <li class="show-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
+                <li class="show-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
+                </ul>`)
+        }
     }
 
     let currentPage = responseJson.page.number;
