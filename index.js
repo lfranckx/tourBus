@@ -67,18 +67,18 @@ function displayResults(responseJson) {
     // show results
     $('#results').removeClass('hidden');
     // show next page button
-    $('#next-button').removeClass('hidden');
+    $('.next').removeClass('hidden');
     // show previous page button if on page higher than 1st page
     if (currentPage >= 1) {
-        $('#prev-button').removeClass('hidden');
+        $('.prev').removeClass('hidden');
     }
     // remove next page button if on last page
     if (currentPage === totalPages-1) {
-        $('#next-button').addClass('hidden');
+        $('.next').addClass('hidden');
     }
     // remove previous page button if on first page
     if (currentPage === 0) {
-        $('#prev-button').addClass('hidden');
+        $('.prev').addClass('hidden');
     }
 }
 
@@ -87,7 +87,6 @@ function prevPageResults(responseJson) {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
-        // console.log(pageNum);
         pageNum = Math.max(0, pageNum - 1);
         console.log(pageNum);
         getResults(searchTerm, pageNum);
