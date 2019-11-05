@@ -58,7 +58,7 @@ function displayResults(responseJson) {
         <li class="event-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
         <li class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
         <li class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
-        </ul>`)
+        </ul>`);
     }
 
     let currentPage = responseJson.page.number;
