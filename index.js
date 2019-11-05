@@ -83,7 +83,7 @@ function displayResults(responseJson) {
 }
 
 function prevPageResults(responseJson) {
-    $(document).on('click', '#prev-button', event => {
+    $(document).on('click', '.prev', event => {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
@@ -94,7 +94,7 @@ function prevPageResults(responseJson) {
 }
 
 function nextPageResults(responseJson) {
-    $(document).on('click', '#next-button', event => {
+    $(document).on('click', '.next', event => {
         event.preventDefault();
         $('#results').empty();
         const searchTerm = $('#js-search-term').val();
