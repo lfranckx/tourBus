@@ -53,7 +53,7 @@ function displayResults(responseJson) {
         let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
         // concat strings for the different results
         let string = ``;
-        $(string).append(
+        string.concat(
             `<div class="event-date">${date.substring(5)}</div>
             <div class="event-name">${responseJson["_embedded"]["events"][i].name}</div>
             <div class="event-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></div>
