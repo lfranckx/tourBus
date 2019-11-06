@@ -44,21 +44,40 @@ function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
     $('#results').empty();
-    //iterate through json response
+    //iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
+        // set variables to use for appending items in the results
+        let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
-        let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
-        // let artistSite = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
-        $('#results').append(
-        `<ul class="event-container">
-        <li class="event-date">${date.substring(5)}</li>
-        <li class="event-name">${responseJson["_embedded"]["events"][i].name}</li>
-        <li class="event-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></li>
-        <li class="event-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</li>        
-        <li class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></li>
-        <li class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></li>
-        </ul>`);
+        let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
+        // concat strings for the different results
+        let string = ``;
+        $(string).append(
+            `<div class="event-date">${date.substring(5)}</div>
+            <div class="event-name">${responseJson["_embedded"]["events"][i].name}</div>
+            <div class="event-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></div>
+            <div class="event-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</div>        
+            <div class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></div>
+            <div class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></div>`);
+        //  iterate through items that have attractions subfolder
+        if (eventDetails.hasOwnProperty(attractions)) {
+            let attractions = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0];
+            // iterate through items that have externalLinks subfolder
+            if (attractions.hasOwnProperty(externalLinks)) {
+                let facebook = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.facebook[0].url;
+                let homePage = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
+                let wiki = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.wiki[0].url;
+                let youtube = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.youtube[0].url;
+                $(string).append(
+                `<div class="event-facebook"><a href="${facebook}">Facebook</a></div>
+                <div class="event-homepage"><a href="${homePage}">${homePage}</a></div>
+                <div class="event-wiki"><a href="${wiki}">Wikipedia</a></div>
+                <div class="event-youtube"><a href="${youtube}">Youtube</a></div>
+                <div class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></div>`);
+            }
+        }
+        $('#results').append(string);
     }
 
     let currentPage = responseJson.page.number;
