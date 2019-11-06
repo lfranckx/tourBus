@@ -69,7 +69,7 @@ function displayResults(responseJson) {
                 let homePage = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
                 let wiki = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.wiki[0].url;
                 let youtube = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.youtube[0].url;
-                $(string).append(
+                string.append(
                 `<div class="event-facebook"><a href="${facebook}">Facebook</a></div>
                 <div class="event-homepage"><a href="${homePage}">${homePage}</a></div>
                 <div class="event-wiki"><a href="${wiki}">Wikipedia</a></div>
