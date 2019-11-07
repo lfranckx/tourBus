@@ -47,7 +47,6 @@ input {
     position: relative;
     bottom: 6px;
     color: grey;
-
 }
 
 #search-input {
@@ -64,16 +63,24 @@ input {
     cursor: pointer;    
 }
 
-h3 {
-    position: relative;
-    top: 3px;
+.pageButtons {
+    border: grey solid 2px;
+    padding: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: grey;
 }
-
-
 
 /* Results Section */
 main {
     text-align: center;
+    padding: 20px 40px;
+    background-color: #b1b1b175;
+}
+
+#container {
+    background-color: white;
+    border-radius: 4px;
     padding: 20px;
 }
 
