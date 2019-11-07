@@ -2,10 +2,13 @@
     box-sizing: border-box;
     margin: 0;
     font-family: 'roboto', sans-serif;
+    color: #2f3640
 }
 
+/* Header Section */
+
 header {
-    padding: 20px 20px 10px;
+    padding: 20px 40px 10px;
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -43,16 +46,17 @@ input {
     border: grey solid 1px;
     position: relative;
     bottom: 6px;
+    color: grey;
 
 }
 
 #search-input {
-    font-size: .8em;
+    font-size: 10px;
     border-radius: 3px;
     padding: 5px;
 }
 
-#js-submit {
+#submit {
     height: 20px;
     width: 20px;
     border-radius: 4px;

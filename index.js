@@ -48,7 +48,7 @@ function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
     $('#results').empty();
-    const searchTerm = $('#js-search-term').val();
+    const searchTerm = $('#search-term').val();
     $('#results').append(`<h3 id="events-header">Events Near ${searchTerm}</h3>`)
     //iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
@@ -134,7 +134,7 @@ function prevPageResults(responseJson) {
     $(document).on('click', '.prev', event => {
         event.preventDefault();
         $('#results').empty();
-        const searchTerm = $('#js-search-term').val();
+        const searchTerm = $('#search-term').val();
         pageNum = Math.max(0, pageNum - 1);
         console.log(pageNum);
         getResults(searchTerm, pageNum);
@@ -145,7 +145,7 @@ function nextPageResults(responseJson) {
     $(document).on('click', '.next', event => {
         event.preventDefault();
         $('#results').empty();
-        const searchTerm = $('#js-search-term').val();
+        const searchTerm = $('#search-term').val();
         pageNum++
         console.log(pageNum);
         getResults(searchTerm, pageNum);
@@ -155,7 +155,7 @@ function nextPageResults(responseJson) {
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
-        const searchTerm = $('#js-search-term').val();
+        const searchTerm = $('#search-term').val();
         getResults(searchTerm, pageNum);
         prevPageResults();
         nextPageResults();
