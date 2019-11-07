@@ -5,6 +5,11 @@
     color: #2f3640
 }
 
+a:link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* Header Section */
 
 header {
@@ -88,27 +93,24 @@ main {
     text-align: left;
 }
 
-#events-header {
-    /* margin-bottom: 20px; */
-}
-
 .event-container {
     margin-top: 20px;
+    display: flex;
+    border-bottom: #b1b1b175 solid 1.4px;
+    padding-bottom: 20px;
+}
+
+.event-sub-container {
     display: flex;
     justify-content: space-between;
 }
 
 .item {
-    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.event-date {
-    
-}
-
-.event-link {
-    float: right;
-}
 
 .thumbnail {
     height: 100px;
@@ -116,8 +118,8 @@ main {
     border-radius: 4px;
 }
 
-.web-info {
-
+.event-link {
+    border: grey solid 2px;
 }
 
 .hidden {

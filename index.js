@@ -56,17 +56,15 @@ function displayResults(responseJson) {
         let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
+        let venue = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name;
         // declare empty string to concat multiple strings
         let string = ``;
         string += `<div class="event-container">
             <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
+            <div class="event-sub-container">
             <div class="event-date item">${date.substring(5)}</div>
             <div class="event-name item">${responseJson["_embedded"]["events"][i].name}</div>
-            <div class="event-venue item">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</div>        
-            <div class="event-address item">
-            <a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address}</a><br>
-            <a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${city}</a>
-            </div>`;
+            <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>`
         //  iterate through items that have attractions subfolder
         let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
         if (eventDetails.hasOwnProperty('attractions')) {
@@ -104,8 +102,7 @@ function displayResults(responseJson) {
         // convert month from number to name
         // let month = convertDate(date);
 
-        string += `<div class="event-link item"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></div>
-        </div>`;
+        string += `<div class="event-link item"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></div></div></div>`;
         $('#results').append(string);
     }
 
