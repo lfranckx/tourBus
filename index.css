@@ -5,10 +5,22 @@
 }
 
 header {
-    padding: 15px;
+    padding: 20px 20px 10px;
     text-align: center;
     display: flex;
     justify-content: space-between;
+    border-bottom: grey 1px solid;
+}
+
+#logo-h1-container {
+    display: flex;
+}
+
+#logo {
+    height: 60px;
+    width: 60px;
+    position: relative;
+    bottom: 14px;
 }
 
 h1, h3, form, input {
@@ -17,37 +29,84 @@ h1, h3, form, input {
 
 
 input {
+    all: unset;
+}
+
+#search-bar {
+    border-radius: 40px;
+    height: 40px;
+    width: 400px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    border: grey solid 1px;
+    position: relative;
+    bottom: 6px;
+
+}
+
+#search-input {
     font-size: .8em;
     border-radius: 3px;
     padding: 5px;
 }
 
+#js-submit {
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    margin: 0 5px;
+    cursor: pointer;    
+}
+
+h3 {
+    position: relative;
+    top: 3px;
+}
+
+
 
 /* Results Section */
 main {
     text-align: center;
+    padding: 20px;
 }
 
-ul {
-    display: inline;
+#results {
+    text-align: left;
 }
 
-li {
-    list-style-type: none;
+#events-header {
+    /* margin-bottom: 20px; */
 }
 
 .event-container {
-    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    margin-right: 10px;
 }
 
 .event-date {
-    margin-top: 10px;
+    
 }
 
+.event-link {
+    float: right;
+}
 
 .thumbnail {
-    height: 240px;
-    width: 300px;
+    height: 100px;
+    width: 120px;
+    border-radius: 4px;
+}
+
+.web-info {
+
 }
 
 .hidden {
