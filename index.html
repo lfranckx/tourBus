@@ -10,21 +10,24 @@
     </head>
     <body>
         <header>
-            <h1>Tour Bus</h1>
-            <form>
-                <input type="text" name="search-term" id="js-search-term" placeholder="Search by city">
-                <input type="submit" name="submit" id="js-submit" value="Search">
+            <div id="logo-h1-container">
+                    <!-- <img src="images/tourbus.jpg" id="logo"> -->
+                    <h1>Tour Bus</h1>
+            </div>
+            <form id="search-bar">
+                <input type="image" name="submit" id="submit" src="images/search.jpg">
+                <input type="text" name="search-term" id="search-term" placeholder="Search by city">
             </form>
             <h3>Find live music near you.</h3>
         </header>
         
         <main>
-            <!-- <div id="container"> -->
+            <div id="container">
                 <section id="results" class="hidden"></section>
                 <p id="js-error-message" class="hidden"></p>
-                <input class="hidden prev" type="submit" value="Back" class="pageButtons"></input>
-                <input class="hidden next" type="submit" value="Next" class="pageButtons"></input>
-            <!-- </div> -->
+                <input class="hidden prev pageButtons" type="submit" value="Back"></input>
+                <input class="hidden next pageButtons" type="submit" value="Next"></input>
+            </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script src="index.js"></script>

@@ -1,6 +1,5 @@
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
-// declare global variable for page number to use in change page functions
 let pageNum = 0;
 
 function getResults(searchTerm, pageNum) {
@@ -11,7 +10,6 @@ function getResults(searchTerm, pageNum) {
         sort: 'date,asc',
         radius: 12,
         unit: 'miles',
-        size: 10,
         page: pageNum
     }
     const queryString = formatQueryParams(params);
@@ -40,43 +38,74 @@ function formatQueryParams(params) {
     return queryItems.join('&');
 }
 
+// function convertDate(date) {
+//     console.log(date);
+//     const month = date.toLocaleString('default', {month: 'long'});
+//     return month;
+// }
+
 function displayResults(responseJson) {
     console.log(responseJson);
     //empty out any prior results
     $('#results').empty();
+    const searchTerm = $('#search-term').val();
+    $('#results').append(`<h3 id="events-header">Events Near ${searchTerm}</h3>`)
     //iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
-        // set variables to use for appending items in the results
+        let image = responseJson["_embedded"]["events"][i].images[0].url;
         let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
-        let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
-        // concat strings for the different results
+        // declare empty string to concat multiple strings
         let string = ``;
-        string.concat(
-            `<div class="event-date">${date.substring(5)}</div>
-            <div class="event-name">${responseJson["_embedded"]["events"][i].name}</div>
-            <div class="event-pictures"><img class="thumbnail" src="${responseJson["_embedded"]["events"][i].images[0].url}"></div>
-            <div class="event-venue">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</div>        
-            <div class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></div>
-            <div class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></div>`);
+        string += `<div class="event-container">
+            <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
+            <div class="event-date item">${date.substring(5)}</div>
+            <div class="event-name item">${responseJson["_embedded"]["events"][i].name}</div>
+            <div class="event-venue item">${responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name}</div>        
+            <div class="event-address item">
+            <a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address}</a><br>
+            <a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${city}</a>
+            </div>`;
         //  iterate through items that have attractions subfolder
-        if (eventDetails.hasOwnProperty(attractions)) {
+        let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
+        if (eventDetails.hasOwnProperty('attractions')) {
             let attractions = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0];
-            // iterate through items that have externalLinks subfolder
-            if (attractions.hasOwnProperty(externalLinks)) {
-                let facebook = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.facebook[0].url;
-                let homePage = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
-                let wiki = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.wiki[0].url;
-                let youtube = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.youtube[0].url;
-                string.concat(
-                `<div class="event-facebook"><a href="${facebook}">Facebook</a></div>
-                <div class="event-homepage"><a href="${homePage}">${homePage}</a></div>
-                <div class="event-wiki"><a href="${wiki}">Wikipedia</a></div>
-                <div class="event-youtube"><a href="${youtube}">Youtube</a></div>
-                <div class="event-link"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></div>`);
+            //  iterate through items that have externalLinks subfolder
+            if (attractions.hasOwnProperty('externalLinks')) {
+                let externalLinks = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks;
+                // find artists with facebook, homepage, wiki, and youtube
+                if (externalLinks.hasOwnProperty('facebook')) {
+                    let facebook = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.facebook[0].url;
+                    string += `<div class="event-facebook item web-info"><a href="${facebook}" target="_blank">Facebook</a></div>`;
+                }
+                if (externalLinks.hasOwnProperty('homepage')) {
+                    let homePage = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
+                    string += `<div class="event-homepage item web-info"><a href="${homePage}" target="_blank">Artist Page</a></div>`;
+                }
+                if (externalLinks.hasOwnProperty('wiki')) {
+                    let wiki = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.wiki[0].url;
+                    string += `<div class="event-wiki item web-info"><a href="${wiki}" target="_blank">Wikipedia</a></div>`;
+
+                }
+                if (externalLinks.hasOwnProperty('youtube')) {
+                    let youtube = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.youtube[0].url;
+                    string += `<div class="event-youtube item web-info"><a href="${youtube}" target="_blank">Youtube</a></div>`;
+                }
             }
         }
+        // if address is unavailable remove address
+        // if (address === undefined) {
+        //     string -= `<div class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></div>`;
+        // }    
+        
+        // if image height and width are less than 200px replace image
+
+        // convert month from number to name
+        // let month = convertDate(date);
+
+        string += `<div class="event-link item"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Buy Tickets</a></div>
+        </div>`;
         $('#results').append(string);
     }
 
@@ -105,7 +134,7 @@ function prevPageResults(responseJson) {
     $(document).on('click', '.prev', event => {
         event.preventDefault();
         $('#results').empty();
-        const searchTerm = $('#js-search-term').val();
+        const searchTerm = $('#search-term').val();
         pageNum = Math.max(0, pageNum - 1);
         console.log(pageNum);
         getResults(searchTerm, pageNum);
@@ -116,16 +145,17 @@ function nextPageResults(responseJson) {
     $(document).on('click', '.next', event => {
         event.preventDefault();
         $('#results').empty();
-        const searchTerm = $('#js-search-term').val();
+        const searchTerm = $('#search-term').val();
         pageNum++
         console.log(pageNum);
         getResults(searchTerm, pageNum);
     });
 }
+
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
-        const searchTerm = $('#js-search-term').val();
+        const searchTerm = $('#search-term').val();
         getResults(searchTerm, pageNum);
         prevPageResults();
         nextPageResults();
