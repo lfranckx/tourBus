@@ -1,6 +1,5 @@
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
-// declare global variable for page number to use in change page functions
 let pageNum = 0;
 
 function getResults(searchTerm, pageNum) {
