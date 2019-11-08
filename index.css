@@ -132,8 +132,3 @@ main {
 .hidden {
     display: none;
 }
-
-.pageButtons {
-    border: grey;
-    color: grey;
-}
