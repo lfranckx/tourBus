@@ -63,7 +63,9 @@ function displayResults(responseJson) {
             <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
             <div class="event-date item">${date.substring(5)}</div>
             <div class="event-name item">${responseJson["_embedded"]["events"][i].name}</div>
-            <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>`
+            <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>
+            <div class="event-city item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${city}</a></div>
+            <div class="social-media-container">`
         //  iterate through items that have attractions subfolder
         let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
         if (eventDetails.hasOwnProperty('attractions')) {
@@ -78,7 +80,7 @@ function displayResults(responseJson) {
                 }
                 if (externalLinks.hasOwnProperty('homepage')) {
                     let homePage = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
-                    string += `<div class="event-homepage item web-info"><a href="${homePage}" target="_blank">Artist Page</a></div>`;
+                    string += `<div class="event-homepage item web-info"><a href="${homePage}" target="_blank">Homepage</a></div>`;
                 }
                 if (externalLinks.hasOwnProperty('wiki')) {
                     let wiki = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.wiki[0].url;
@@ -101,7 +103,8 @@ function displayResults(responseJson) {
         // convert month from number to name
         // let month = convertDate(date);
 
-        string += `<button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
+        string += `</div>
+        <button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
         $('#results').append(string);
     }
 

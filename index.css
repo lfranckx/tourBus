@@ -122,8 +122,23 @@ main {
     border-radius: 4px;
 }
 
+.event-date {
+    width: 10%;
+}
+
 .event-link {
     font-size: 16px;
     border-radius: 4px;
     padding: 5px;
+}
+
+/* Social Media Section */
+
+.social-media-container {
+    display: inline;
+    position: relative;
+}
+
+.web-info {
+    margin: 4px;
 }
