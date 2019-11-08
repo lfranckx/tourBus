@@ -102,7 +102,7 @@ function displayResults(responseJson) {
         // convert month from number to name
         // let month = convertDate(date);
 
-        string += `<div class="event-link item"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></div></div></div>`;
+        string += `<button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div></div>`;
         $('#results').append(string);
     }
 
@@ -111,6 +111,7 @@ function displayResults(responseJson) {
 
     // show results
     $('#results').removeClass('hidden');
+    $('main').removeClass('hidden');
     // show next page button
     $('.next').removeClass('hidden');
     // show previous page button if on page higher than 1st page
