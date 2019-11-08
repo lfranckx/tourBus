@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Tour Bus - Find Live Music</title>
+        <title>Find Live Music</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,23 +10,25 @@
     </head>
     <body>
         <header>
-            <div id="logo-h1-container">
+            <div id="logo-h1-container" class="add-margin">
                     <!-- <img src="images/tourbus.jpg" id="logo"> -->
-                    <h1>Tour Bus</h1>
+                    <h1 >Tour Bus</h1>
             </div>
             <form id="search-bar">
                 <input type="image" name="submit" id="submit" src="images/search.jpg">
                 <input type="text" name="search-term" id="search-term" placeholder="Search by city">
             </form>
-            <h3>Find live music near you.</h3>
+            <h3 class="add-margin">Find live music happening tonight.</h3>
         </header>
         
-        <main>
+        <main class="hidden">
             <div id="container">
                 <section id="results" class="hidden"></section>
                 <p id="js-error-message" class="hidden"></p>
-                <input class="hidden prev pageButtons" type="submit" value="Back"></input>
-                <input class="hidden next pageButtons" type="submit" value="Next"></input>
+                <div id="page-button-container">
+                    <input class="hidden prev pageButtons" type="submit" value="Previous Results"></input>
+                    <input class="hidden next pageButtons" type="submit" value="View More Results"></input>
+                </div>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>

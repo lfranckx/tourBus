@@ -2,37 +2,38 @@
     box-sizing: border-box;
     margin: 0;
     font-family: 'roboto', sans-serif;
-    color: #2f3640
-}
-
-/* Header Section */
-
-header {
-    padding: 20px 40px 10px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: grey 1px solid;
-}
-
-#logo-h1-container {
-    display: flex;
-}
-
-#logo {
-    height: 60px;
-    width: 60px;
-    position: relative;
-    bottom: 14px;
-}
-
-h1, h3, form, input {
-    font-size: 1.5em;
+    color: #2f3640;
 }
 
 
 input {
     all: unset;
+}
+
+a:link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Header Section */
+
+header {
+    padding: 200px;
+    text-align: center;
+    display: block;
+}
+
+#logo-h1-container {
+    display: block;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+.add-margin {
+    margin: 20px;
 }
 
 #search-bar {
@@ -47,12 +48,17 @@ input {
     position: relative;
     bottom: 6px;
     color: grey;
+    margin: auto;
 }
 
 #search-input {
     font-size: 10px;
     border-radius: 3px;
     padding: 5px;
+}
+
+#search-term {
+    width: 350px;
 }
 
 #submit {
@@ -63,12 +69,21 @@ input {
     cursor: pointer;    
 }
 
+#page-button-container {
+    margin-top: 10px;
+}
+
+input[value="Previous Results"] {
+    margin-bottom: 1px;
+}
+
 .pageButtons {
-    border: grey solid 2px;
+    border: grey solid 1px;
     padding: 5px;
-    border-radius: 30px;
+    border-radius: 4px;
     cursor: pointer;
     color: grey;
+    width: 50%;
 }
 
 /* Results Section */
@@ -88,36 +103,30 @@ main {
     text-align: left;
 }
 
-#events-header {
-    /* margin-bottom: 20px; */
-}
-
 .event-container {
     margin-top: 20px;
     display: flex;
+    border-bottom: #b1b1b175 solid 1.4px;
+    padding-bottom: 20px;
+}
+
+.event-sub-container {
+    display: flex;
     justify-content: space-between;
+    margin: auto;
 }
 
 .item {
-    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.event-date {
-    
-}
-
-.event-link {
-    float: right;
-}
 
 .thumbnail {
     height: 100px;
     width: 120px;
     border-radius: 4px;
-}
-
-.web-info {
-
 }
 
 .hidden {
