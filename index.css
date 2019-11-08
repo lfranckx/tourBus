@@ -15,8 +15,11 @@ a:link {
     cursor: pointer;
 }
 
-/* Header Section */
+.hidden {
+    display: none;
+}
 
+/* HEADER SECTION*/
 header {
     padding: 200px;
     text-align: center;
@@ -69,14 +72,7 @@ h3 {
     cursor: pointer;    
 }
 
-#page-button-container {
-    margin-top: 10px;
-}
-
-input[value="Previous Results"] {
-    margin-bottom: 1px;
-}
-
+/* PAGE BUTTONS SECTION */
 .pageButtons {
     border: grey solid 1px;
     padding: 5px;
@@ -86,7 +82,15 @@ input[value="Previous Results"] {
     width: 50%;
 }
 
-/* Results Section */
+input[value="Previous Results"] {
+    margin-bottom: 1px;
+}
+
+#page-button-container {
+    margin-top: 10px;
+}
+
+/* RESULTS SECTION */
 main {
     text-align: center;
     padding: 20px 40px;
@@ -122,13 +126,14 @@ main {
     flex-direction: column;
 }
 
-
 .thumbnail {
     height: 100px;
     width: 120px;
     border-radius: 4px;
 }
 
-.hidden {
-    display: none;
+.event-link {
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 5px;
 }
