@@ -61,7 +61,6 @@ function displayResults(responseJson) {
         let string = ``;
         string += `<div class="event-container">
             <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
-            <div class="event-sub-container">
             <div class="event-date item">${date.substring(5)}</div>
             <div class="event-name item">${responseJson["_embedded"]["events"][i].name}</div>
             <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>`
@@ -102,7 +101,7 @@ function displayResults(responseJson) {
         // convert month from number to name
         // let month = convertDate(date);
 
-        string += `<button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div></div>`;
+        string += `<button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
         $('#results').append(string);
     }
 
