@@ -91,10 +91,6 @@ input[value="Previous Results"] {
     margin-bottom: 1px;
 }
 
-#page-button-container {
-    margin-top: 10px;
-}
-
 /* RESULTS SECTION */
 main {
     text-align: center;
@@ -109,6 +105,7 @@ main {
 
 #results {
     text-align: left;
+    margin-bottom: 10px;
 }
 
 .event-container {

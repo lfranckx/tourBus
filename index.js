@@ -46,14 +46,15 @@ function formatQueryParams(params) {
 
 function displayResults(responseJson) {
     console.log(responseJson);
-    //empty out any prior results
+    // empty out any prior results
     $('#results').empty();
     const searchTerm = $('#search-term').val();
     $('#results').append(`<h3 id="events-header">Events Near ${searchTerm}</h3>`)
-    //iterate through the events in json response
+    // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
         let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
+        let name = responseJson["_embedded"]["events"][i].name;
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
         let venue = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].name;
@@ -62,7 +63,7 @@ function displayResults(responseJson) {
         string += `<div class="event-container">
             <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
             <div class="event-date item">${date.substring(5)}</div>
-            <div class="event-name item">${responseJson["_embedded"]["events"][i].name}</div>
+            <div class="event-name item">${name}</div>
             <div class="venue-city">
             <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>
             <div class="event-city item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${city}</a></div>
@@ -95,24 +96,12 @@ function displayResults(responseJson) {
                 }
             }
         }
-        // if address is unavailable remove address
-        // if (address === undefined) {
-        //     string -= `<div class="event-address"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address} ${city}</a></div>`;
-        // }    
-        
-        // if image height and width are less than 200px replace image
-
-        // convert month from number to name
-        // let month = convertDate(date);
-
         string += `</div>
         <button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
         $('#results').append(string);
     }
-
     let currentPage = responseJson.page.number;
     let totalPages = responseJson.page.totalPages;
-
     // show results
     $('#results').removeClass('hidden');
     $('main').removeClass('hidden');
@@ -158,6 +147,7 @@ function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
+        pageNum = 0;
         getResults(searchTerm, pageNum);
         prevPageResults();
         nextPageResults();
