@@ -3,30 +3,32 @@ const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
 let pageNum = 0;
 
 function getResults(searchTerm, pageNum) {
-    const params = {
-        apikey: apikey,
-        city: searchTerm,
-        keyword: 'music',
-        sort: 'date,asc',
-        radius: 12,
-        unit: 'miles',
-        page: pageNum
+    if (searchTerm !== "") {
+        const params = {
+            apikey: apikey,
+            city: searchTerm,
+            keyword: 'music',
+            sort: 'date,asc',
+            radius: 12,
+            unit: 'miles',
+            page: pageNum
+        }
+        const queryString = formatQueryParams(params);
+        const url = baseURL + '?' + queryString;
+    
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(response.statusText);
+            })
+            .then(responseJson => displayResults(responseJson))
+            .catch(err => {
+                $('#js-error-message').removeClass('hidden');
+                $('#js-error-message').text(`${err.message}`);
+            })
     }
-    const queryString = formatQueryParams(params);
-    const url = baseURL + '?' + queryString;
-
-    fetch(url)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then(responseJson => displayResults(responseJson))
-        .catch(err => {
-            $('#js-error-message').removeClass('hidden');
-            $('#js-error-message').text(`${err.message}`);
-        })
 }
 
 function formatQueryParams(params) {
@@ -50,6 +52,10 @@ function displayResults(responseJson) {
     $('#results').empty();
     const searchTerm = $('#search-term').val();
     $('#results').append(`<h3 id="events-header">Events Near ${searchTerm}</h3>`)
+    // if search results are empty display message
+    if(responseJson.page.totalElements = 0) {
+        $('#results').append(`<p id="no-results-message">Sorry we could not find any results.  Try a different city.</p>`);
+    }
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
@@ -144,13 +150,19 @@ function nextPageResults(responseJson) {
 }
 
 function watchForm() {
+    let first = true;
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
         pageNum = 0;
         getResults(searchTerm, pageNum);
-        prevPageResults();
-        nextPageResults();
+        $('#no-results-message').remove();
+        // only call these functions if it is the first search
+        if(first) {
+            prevPageResults();
+            nextPageResults();
+        }
+        first = false;
     });
 }
 
