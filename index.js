@@ -63,8 +63,10 @@ function displayResults(responseJson) {
             <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
             <div class="event-date item">${date.substring(5)}</div>
             <div class="event-name item">${responseJson["_embedded"]["events"][i].name}</div>
+            <div class="venue-city">
             <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>
             <div class="event-city item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${city}</a></div>
+            </div>
             <div class="social-media-container">`
         //  iterate through items that have attractions subfolder
         let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];

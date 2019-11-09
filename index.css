@@ -20,8 +20,12 @@ a:link {
 }
 
 /* HEADER SECTION*/
+body {
+    background-color: #b1b1b175;
+}
+
 header {
-    padding: 200px;
+    padding-top: 200px;
     text-align: center;
     display: block;
 }
@@ -52,6 +56,7 @@ h3 {
     bottom: 6px;
     color: grey;
     margin: auto;
+    background-color: white;
 }
 
 #search-input {
@@ -94,7 +99,6 @@ input[value="Previous Results"] {
 main {
     text-align: center;
     padding: 20px 40px;
-    background-color: #b1b1b175;
 }
 
 #container {
@@ -123,22 +127,31 @@ main {
 }
 
 .event-date {
-    width: 10%;
+    padding-left: 5px;
+    width: 10%
+}
+
+.event-name {
+    width: 20%;
+}
+
+
+.venue-city {
+    display: inline;
+    width: 20%;
+}
+
+.social-media-container {
+    display: inline;
+    width: 10%
+}
+
+.web-info {
+    margin: 4px;
 }
 
 .event-link {
     font-size: 16px;
     border-radius: 4px;
     padding: 5px;
-}
-
-/* Social Media Section */
-
-.social-media-container {
-    display: inline;
-    position: relative;
-}
-
-.web-info {
-    margin: 4px;
 }
