@@ -26,7 +26,7 @@ function getResults(searchTerm, pageNum) {
             .then(responseJson => displayResults(responseJson))
             .catch(err => {
                 $('#js-error-message').removeClass('hidden');
-                $('#js-error-message').text(`${err.message}`);
+                $('#js-error-message').text(`Sorry, unable to find results.  Try another city.`);
             })
     }
 }
@@ -51,11 +51,10 @@ function displayResults(responseJson) {
     // empty out any prior results
     $('#results').empty();
     const searchTerm = $('#search-term').val();
+    // show results
+    $('#results').removeClass('hidden');
+    $('main').removeClass('hidden');
     $('#results').append(`<h3 id="events-header">Events Near ${searchTerm}</h3>`)
-    // if search results are empty display message
-    if(responseJson.page.totalElements = 0) {
-        $('#results').append(`<p id="no-results-message">Sorry we could not find any results.  Try a different city.</p>`);
-    }
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
@@ -108,9 +107,6 @@ function displayResults(responseJson) {
     }
     let currentPage = responseJson.page.number;
     let totalPages = responseJson.page.totalPages;
-    // show results
-    $('#results').removeClass('hidden');
-    $('main').removeClass('hidden');
     // show next page button
     $('.next').removeClass('hidden');
     // show previous page button if on page higher than 1st page
