@@ -26,7 +26,9 @@ function getResults(searchTerm, pageNum) {
             .then(responseJson => displayResults(responseJson))
             .catch(err => {
                 $('#js-error-message').removeClass('hidden');
-                $('#js-error-message').text(`Sorry, unable to find results.  Try another city.`);
+                $('#no-results-message').removeClass('hidden');
+                $('#no-results-message').text(`Unable to find results.  Try a different city.`);
+                $('#js-error-message').text(`${err.message}`);
             })
     }
 }
@@ -152,7 +154,6 @@ function watchForm() {
         const searchTerm = $('#search-term').val();
         pageNum = 0;
         getResults(searchTerm, pageNum);
-        $('#no-results-message').remove();
         // only call these functions if it is the first search
         if(first) {
             prevPageResults();

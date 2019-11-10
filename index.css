@@ -152,3 +152,8 @@ main {
     border-radius: 4px;
     padding: 5px;
 }
+
+#no-results-message {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
