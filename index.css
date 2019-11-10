@@ -43,6 +43,7 @@ h3 {
     margin: 20px;
 }
 
+/* SEARCH BAR */
 #search-bar {
     border-radius: 40px;
     height: 40px;
@@ -77,20 +78,6 @@ h3 {
     cursor: pointer;    
 }
 
-/* PAGE BUTTONS SECTION */
-.pageButtons {
-    border: grey solid 1px;
-    padding: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    color: grey;
-    width: 50%;
-}
-
-input[value="Previous Results"] {
-    margin-bottom: 1px;
-}
-
 /* RESULTS SECTION */
 main {
     text-align: center;
@@ -108,6 +95,7 @@ main {
     margin-bottom: 10px;
 }
 
+/* EVENTS LIST */
 .event-container {
     margin-top: 20px;
     display: flex;
@@ -156,4 +144,18 @@ main {
 #no-results-message {
     font-size: 1.2em;
     margin-bottom: 5px;
+}
+
+/* PAGE BUTTONS SECTION */
+.pageButtons {
+    border: grey solid 1px;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: grey;
+    width: 50%;
+}
+
+input[value="Previous Results"] {
+    margin-bottom: 1px;
 }
