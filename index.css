@@ -236,7 +236,7 @@ main {
     border-radius: 4px;
     cursor: pointer;
     color: #f15731;
-    width: 50%;
+    width: 300px;
 }
 
 .event-link:hover {
