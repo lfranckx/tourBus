@@ -7,8 +7,11 @@
 
 body {
     color: #2f3640;
-    background-color:  #e84118;;
-    /* background-color: #b1b1b175; */
+    background-image: url('images/crowd-in-front-of-people-playing-musical-instrument-during-196652.jpg');
+    background-size: cover;
+    background-repeat: none;
+    background-color:  #e84118;
+    background-blend-mode: darken;
 
 }
 
@@ -29,7 +32,7 @@ a {
 
 /* HEADER SECTION*/
 header {
-    padding-top: 200px;
+    padding-top: 100px;
     text-align: center;
     display: block;
 }
@@ -203,6 +206,11 @@ main {
 }
 
 /* BUTTONS SECTION */
+#submit:active {
+    background-color: #e84118;
+    color: #2f3640;
+}
+
 .event-link {
     font-size: 16px;
     border-radius: 4px;
