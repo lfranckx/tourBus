@@ -7,12 +7,13 @@
 
 body {
     color: #2f3640;
-    background-image: url('images/crowd-in-front-of-people-playing-musical-instrument-during-196652.jpg');
+    background: url('images/crowd.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: none;
-    background-color:  #e84118;
+    background-color: #e84118;
     background-blend-mode: darken;
-
 }
 
 input {
@@ -22,9 +23,8 @@ input {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: rgba(164, 164, 164, 0.934);
+    color: #e84118;
 }
-
 
 .hidden {
     display: none;
@@ -37,13 +37,13 @@ header {
     display: block;
 }
 
-#logo-h1-container {
-    display: block;
-    text-align: center;
+h1 {
+    text-shadow: 1.4px 1px 1px black;
 }
 
 h3 {
     font-size: 1.5em;
+    text-shadow: 1px 1px 1px black;
 }
 
 .add-margin {
@@ -64,8 +64,8 @@ h3 {
     color: #f1f1f1;
     margin: auto;
     background-color: #2f3640;
+    box-shadow: 2px 3px 3px black;
 }
-
 
 #search-term {
     width: 320px;
@@ -131,6 +131,7 @@ main {
     border-radius: 4px;
     padding: 20px;
     color: #f1f1f1;
+    box-shadow: 2px 3px 3px black;
 }
 
 .results-head {
@@ -147,7 +148,7 @@ main {
 .event-container {
     margin-top: 20px;
     display: flex;
-    border-bottom: #e84118 solid 1.4px;
+    border-bottom: #f1f1f1 solid 1.4px;
     padding-bottom: 20px;
     align-items: center;
     justify-content: space-between;
@@ -211,32 +212,47 @@ main {
     color: #2f3640;
 }
 
+#submit:hover {
+    -webkit-transform: scale(1.05);
+}
+
 .event-link {
     font-size: 16px;
     border-radius: 4px;
     padding: 5px;
-    background-color: #e84118;
-    color: #2f3640;
+    background-color: #2f3640;
+    color: #e84118;
     border: none;
 }
 
-.pageButtons {
-    background-color: #e84118;
+.next {
     padding: 5px;
     border-radius: 4px;
     cursor: pointer;
-    color: #2f3640;
+    color: #e84118;
     width: 50%;
-}
-
-.buttons:hover {
-    background-color: #e84118;
-    color: #f1f1f1;
-    transition-duration: .4s;
 }
 
 .event-link:hover {
     background-color: #e84118;
-    color: #f1f1f1;
+    color: #2f3640;
+    -webkit-transform: scale(1.05);
+    transition-duration: .4s;
+}
+
+.next:hover {
+    background-color: #e84118;
+    color: #2f3640;
+    -webkit-transform: scale(1.05);
+    transition-duration: .4s;
+}
+
+.venue-city:hover {
+    filter: brightness(150%);
+    transition-duration: .4s;
+}
+
+.social-media-container:hover {
+    filter: brightness(150%);
     transition-duration: .4s;
 }

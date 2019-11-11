@@ -28,7 +28,7 @@ function getResults(searchTerm, pageNum) {
             .catch(err => {
                 $('#js-error-message').removeClass('hidden');
                 $('#no-results-message').removeClass('hidden');
-                $('#no-results-message').text(`Unable to find results.  Try a different city.`);
+                $('#no-results-message').text(`Unable to find results for ${searchTerm}.`);
                 $('#js-error-message').text(`${err.message}`);
             })
     }
@@ -46,8 +46,13 @@ function formatQueryParams(params) {
 function displayResults(responseJson) {
     console.log(responseJson);
     const searchTerm = $('#search-term').val();
+    let first = true;
     $('#loader').show(2000);
     $('#loader').hide(); 
+    if(first) {
+        $('#results').delay(2000).append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
+    }
+    first = false;
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
@@ -100,7 +105,7 @@ function displayResults(responseJson) {
             }
         }
         string += `</div>
-        <button class="event-link buttons" type="button"><a class="event-link" href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
+        <button class="event-link tickets-button" type="button"><a class="event-link" href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
         $('#results').delay(2000).append(string).fadeIn(400);
     }
     let currentPage = responseJson.page.number;
@@ -152,7 +157,6 @@ function watchForm() {
         $('main').removeClass('hidden').fadeIn(1000);
         // empty out any prior results
         $('#results').empty();
-        $('#results').delay(2000).append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
         getResults(searchTerm, pageNum);
         // only call these functions if it is the first search
         if(first) {
