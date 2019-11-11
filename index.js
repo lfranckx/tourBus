@@ -29,7 +29,7 @@ function getResults(searchTerm, pageNum) {
                 $('#js-error-message').removeClass('hidden');
                 $('#no-results-message').removeClass('hidden');
                 $('#no-results-message').text(`Unable to find results for ${searchTerm}.`);
-                $('#js-error-message').text(`${err.message}`);
+                // $('#js-error-message').text(`${err.message}`);
             })
     }
 }
