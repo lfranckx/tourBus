@@ -165,3 +165,4 @@ function watchForm() {
 }
 
 $(watchForm);
+$('#search-term').focus();
