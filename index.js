@@ -11,6 +11,7 @@ function getResults(searchTerm, pageNum) {
             sort: 'date,asc',
             radius: 12,
             unit: 'miles',
+            size: 6,
             page: pageNum
         }
         const queryString = formatQueryParams(params);
@@ -42,25 +43,17 @@ function formatQueryParams(params) {
     return queryItems.join('&');
 }
 
-// function convertDate(date) {
-//     console.log(date);
-//     const month = date.toLocaleString('default', {month: 'long'});
-//     return month;
-// }
-
 function displayResults(responseJson) {
     console.log(responseJson);
-    // empty out any prior results
-    $('#results').empty();
     const searchTerm = $('#search-term').val();
-    // show results
-    $('#results').removeClass('hidden');
-    $('main').removeClass('hidden');
-    $('#results').append(`<h3 id="events-header">Events Near ${searchTerm}</h3>`)
+    $('#loader').show(2000);
+    $('#loader').hide(); 
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
-        let date = responseJson["_embedded"]["events"][i].dates.start.localDate;
+        let date = new Date(responseJson["_embedded"]["events"][i].dates.start.localDate);
+        let month = date.toDateString().substring(4, 7);
+        let day = date.toDateString().substring(8, 10);
         let name = responseJson["_embedded"]["events"][i].name;
         let address = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].address.line1;
         let city = responseJson["_embedded"]["events"][i]["_embedded"].venues[0].city.name;
@@ -69,7 +62,10 @@ function displayResults(responseJson) {
         let string = ``;
         string += `<div class="event-container">
             <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
-            <div class="event-date item">${date.substring(5)}</div>
+            <div class="event-date">
+            <div class="event-month item">${month}</div>
+            <div class="event-day item">${day}</div>
+            </div>
             <div class="event-name item">${name}</div>
             <div class="venue-city">
             <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>
@@ -104,42 +100,41 @@ function displayResults(responseJson) {
             }
         }
         string += `</div>
-        <button class="event-link" type="button"><a href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
-        $('#results').append(string);
+        <button class="event-link buttons" type="button"><a class="event-link" href="${responseJson["_embedded"]["events"][i].url}" target="_blank">Tickets & Information</a></button></div>`;
+        $('#results').delay(2000).append(string).fadeIn(400);
     }
     let currentPage = responseJson.page.number;
     let totalPages = responseJson.page.totalPages;
     // show next page button
     $('.next').removeClass('hidden');
     // show previous page button if on page higher than 1st page
-    if (currentPage >= 1) {
-        $('.prev').removeClass('hidden');
-    }
+    // if (currentPage >= 1) {
+    //     $('.prev').removeClass('hidden');
+    // }
     // remove next page button if on last page
     if (currentPage === totalPages-1) {
         $('.next').addClass('hidden');
     }
     // remove previous page button if on first page
-    if (currentPage === 0) {
-        $('.prev').addClass('hidden');
-    }
+    // if (currentPage === 0) {
+    //     $('.prev').addClass('hidden');
+    // }
 }
 
-function prevPageResults(responseJson) {
-    $(document).on('click', '.prev', event => {
-        event.preventDefault();
-        $('#results').empty();
-        const searchTerm = $('#search-term').val();
-        pageNum = Math.max(0, pageNum - 1);
-        console.log(pageNum);
-        getResults(searchTerm, pageNum);
-    });
-}
+// function prevPageResults(responseJson) {
+//     $(document).on('click', '.prev', event => {
+//         event.preventDefault();
+//         $('#results').empty();
+//         const searchTerm = $('#search-term').val();
+//         pageNum = Math.max(0, pageNum - 1);
+//         console.log(pageNum);
+//         getResults(searchTerm, pageNum);
+//     });
+// }
 
 function nextPageResults(responseJson) {
     $(document).on('click', '.next', event => {
         event.preventDefault();
-        $('#results').empty();
         const searchTerm = $('#search-term').val();
         pageNum++
         console.log(pageNum);
@@ -153,10 +148,15 @@ function watchForm() {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
         pageNum = 0;
+        $('#results').removeClass('hidden').fadeIn(1000);
+        $('main').removeClass('hidden').fadeIn(1000);
+        // empty out any prior results
+        $('#results').empty();
+        $('#results').delay(2000).append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
         getResults(searchTerm, pageNum);
         // only call these functions if it is the first search
         if(first) {
-            prevPageResults();
+            // prevPageResults();
             nextPageResults();
         }
         first = false;

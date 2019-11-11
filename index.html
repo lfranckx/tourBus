@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="index.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/641164ee7f.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
@@ -15,7 +16,8 @@
                     <h1 >Tour Bus</h1>
             </div>
             <form id="search-bar">
-                <input type="image" name="submit" id="submit" src="images/search.jpg">
+                <i id="submit" class="fas fa-search"></i>
+                <!-- <input type="image" name="submit" id="submit" src="images/search.jpg"> -->
                 <input type="text" name="search-term" id="search-term" placeholder="Search by city">
             </form>
             <h3 class="add-margin">Find live music happening tonight.</h3>
@@ -24,10 +26,15 @@
         <main class="hidden">
             <div id="container">
                 <section id="results" class="hidden"></section>
+                <div id="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <p id="no-results-message" class="hidden"></p></p>
                 <p id="js-error-message" class="hidden"></p>
-                <input class="hidden prev pageButtons" type="submit" value="Previous Results"></input>
-                <input class="hidden next pageButtons" type="submit" value="View More Results"></input>
+                <!-- <input class="hidden prev pageButtons buttons" type="submit" value="Previous Results"></input> -->
+                <input class="hidden next pageButtons buttons" type="submit" value="View More Results"></input>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
