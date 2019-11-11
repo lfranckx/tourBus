@@ -106,34 +106,15 @@ function displayResults(responseJson) {
     }
     let currentPage = responseJson.page.number;
     let totalPages = responseJson.page.totalPages;
-    // show next page button
+    // show more results button
     $('.next').removeClass('hidden');
-    // show previous page button if on page higher than 1st page
-    // if (currentPage >= 1) {
-    //     $('.prev').removeClass('hidden');
-    // }
-    // remove next page button if on last page
+    // remove more results button if on last page
     if (currentPage === totalPages-1) {
         $('.next').addClass('hidden');
     }
-    // remove previous page button if on first page
-    // if (currentPage === 0) {
-    //     $('.prev').addClass('hidden');
-    // }
 }
 
-// function prevPageResults(responseJson) {
-//     $(document).on('click', '.prev', event => {
-//         event.preventDefault();
-//         $('#results').empty();
-//         const searchTerm = $('#search-term').val();
-//         pageNum = Math.max(0, pageNum - 1);
-//         console.log(pageNum);
-//         getResults(searchTerm, pageNum);
-//     });
-// }
-
-function nextPageResults(responseJson) {
+function moreResults(responseJson) {
     $(document).on('click', '.next', event => {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
@@ -158,7 +139,7 @@ function watchForm() {
         // only call these functions if it is the first search
         if(first) {
             // prevPageResults();
-            nextPageResults();
+            moreResults();
         }
         first = false;
     });
