@@ -49,10 +49,6 @@ function displayResults(responseJson) {
     let first = true;
     $('#loader').show(2000);
     $('#loader').hide(); 
-    if(first) {
-        $('#results').delay(2000).append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
-    }
-    first = false;
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
@@ -87,20 +83,20 @@ function displayResults(responseJson) {
                 // find artists with facebook, homepage, wiki, and youtube
                 if (externalLinks.hasOwnProperty('facebook')) {
                     let facebook = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.facebook[0].url;
-                    string += `<div class="event-facebook item web-info"><a href="${facebook}" target="_blank">Facebook</a></div>`;
+                    string += `<div class="event-facebook item web-info"><a class="social-media-link" href="${facebook}" target="_blank">Facebook</a></div>`;
                 }
                 if (externalLinks.hasOwnProperty('homepage')) {
                     let homePage = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.homepage[0].url;
-                    string += `<div class="event-homepage item web-info"><a href="${homePage}" target="_blank">Homepage</a></div>`;
+                    string += `<div class="event-homepage item web-info"><a class="social-media-link" href="${homePage}" target="_blank">Homepage</a></div>`;
                 }
                 if (externalLinks.hasOwnProperty('wiki')) {
                     let wiki = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.wiki[0].url;
-                    string += `<div class="event-wiki item web-info"><a href="${wiki}" target="_blank">Wikipedia</a></div>`;
+                    string += `<div class="event-wiki item web-info"><a class="social-media-link" href="${wiki}" target="_blank">Wikipedia</a></div>`;
 
                 }
                 if (externalLinks.hasOwnProperty('youtube')) {
                     let youtube = responseJson["_embedded"]["events"][i]["_embedded"].attractions[0].externalLinks.youtube[0].url;
-                    string += `<div class="event-youtube item web-info"><a href="${youtube}" target="_blank">Youtube</a></div>`;
+                    string += `<div class="event-youtube item web-info"><a class="social-media-link" href="${youtube}" target="_blank">Youtube</a></div>`;
                 }
             }
         }
@@ -157,6 +153,7 @@ function watchForm() {
         $('main').removeClass('hidden').fadeIn(1000);
         // empty out any prior results
         $('#results').empty();
+        $('#results').delay(2000).append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
         getResults(searchTerm, pageNum);
         // only call these functions if it is the first search
         if(first) {
