@@ -29,17 +29,16 @@ function getResults(searchTerm, pageNum) {
                 $('#js-error-message').removeClass('hidden');
                 $('#no-results-message').removeClass('hidden');
                 $('#no-results-message').text(`Unable to find results for ${searchTerm}.`);
-                // $('#js-error-message').text(`${err.message}`);
             })
     }
 }
 
 function formatQueryParams(params) {
-    // declare variable for key values
+    //turn the object key values into a URL string with parameters
     const queryItems = Object.keys(params)
-    // map object into a string and turn : into =
+    // map object into a string
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    // join string together with &
+    // join parameters together with &
     return queryItems.join('&');
 }
 
