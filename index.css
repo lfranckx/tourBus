@@ -94,7 +94,8 @@ h3 {
 
 #loader > span {
     display: inline-block;
-    background-color: grey;
+    background-color: #f15731
+    ;
     height: 0;
     width: 0;
     border-radius: 50%;
@@ -104,7 +105,8 @@ h3 {
 }
 
 #loader > span:nth-child(2) {
-    background-color: rgb(159, 159, 159);
+    background-color: #f95a33;
+    (159, 159, 159);
     animation-delay: 0.2s;
 }
 
@@ -129,7 +131,7 @@ main {
 #container {
     background-color: #2f3640;
     border-radius: 4px;
-    padding: 40px;
+    padding: 20px 40px;
     color: #f1f1f1;
     box-shadow: 2px 3px 3px black;
 }
@@ -161,7 +163,6 @@ main {
 }
 
 .event-date {
-    width: 4%;
     color: #f1f1f1;
 }
 
@@ -216,6 +217,10 @@ main {
     -webkit-transform: scale(1.05);
 }
 
+.tickets-button {
+    margin-left: 5px;
+}
+
 .event-link {
     font-size: 16px;
     border-radius: 4px;
@@ -226,6 +231,7 @@ main {
 }
 
 .next {
+    margin-top: 10px;
     padding: 5px;
     border-radius: 4px;
     cursor: pointer;
@@ -248,11 +254,11 @@ main {
 }
 
 .venue-city:hover {
-    filter: brightness(150%);
+    filter: brightness(180%);
     transition-duration: .4s;
 }
 
 .social-media-link:hover {
-    filter: brightness(150%);
+    filter: brightness(180%);
     transition-duration: .4s;
 }
