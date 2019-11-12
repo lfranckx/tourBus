@@ -142,7 +142,6 @@ function watchForm() {
         getResults(searchTerm, pageNum);
         // only call these functions if it is the first search
         if(first) {
-            // prevPageResults();
             moreResults();
         }
         first = false;

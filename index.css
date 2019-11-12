@@ -2,7 +2,6 @@
     box-sizing: border-box;
     margin: 0;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-    /* color: #2f3640; */
 }
 
 body {
@@ -43,7 +42,6 @@ h1 {
 
 h3 {
     font-size: 1.5em;
-    /* text-shadow: 1px 1px 1px black; */
 }
 
 .add-margin {
