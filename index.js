@@ -130,13 +130,14 @@ function watchForm() {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
         pageNum = 0;
+        $('#results').empty();
         $('#results').removeClass('hidden').fadeIn(1000);
         $('main').removeClass('hidden').fadeIn(1000);
-        // empty out any prior results
-        $('#results').empty();
-        // show loader
+        // show loader animation
         $('#loader').show();
-        setTimeout(getResults(searchTerm, pageNum)1500);
+        // hide view more button if unable to find results
+        $('.more').addClass('hidden');
+        getResults(searchTerm, pageNum);
         // only call these functions if it is the first search
         if(first) {
             // prevPageResults();

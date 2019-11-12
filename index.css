@@ -50,6 +50,10 @@ h3 {
     margin: 20px;
 }
 
+.error {
+    font-size: 1.5em;
+}
+
 /* SEARCH BAR */
 #search-bar {
     border-radius: 40px;
@@ -135,6 +139,7 @@ main {
     padding: 20px 40px;
     color: #f1f1f1;
     box-shadow: 2px 3px 3px black;
+    min-height: 300px;
 }
 
 .results-head {
@@ -231,7 +236,7 @@ main {
     border: none;
 }
 
-.next {
+.more {
     margin-top: 10px;
     padding: 5px;
     border-radius: 4px;
@@ -247,7 +252,7 @@ main {
     transition-duration: .4s;
 }
 
-.next:hover {
+.more:hover {
     background-color: #f15731;
     color: #2f3640;
     -webkit-transform: scale(1.05);
