@@ -76,6 +76,10 @@ h3 {
     font-size: 20px;
 }
 
+.search-button {
+    all: unset;
+}
+
 #submit {
     color: #f15731;
     border: solid #f15731 2px;
@@ -139,7 +143,6 @@ main {
     padding: 20px 40px;
     color: #f1f1f1;
     box-shadow: 2px 3px 3px black;
-    min-height: 300px;
 }
 
 .results-head {

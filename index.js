@@ -20,13 +20,15 @@ function getResults(searchTerm, pageNum) {
         fetch(url)
             .then(response => {
                 if (response.ok) {
+                    $('#no-results-message').hide();
                     return response.json();
                 }
                 throw new Error(response.statusText);
             })
             .then(responseJson => displayResults(responseJson))
             .catch(err => {
-                $('#js-error-message').removeClass('hidden');
+                $('.results-head').hide();
+                $('#no-results-message').show();
                 $('#no-results-message').removeClass('hidden');
                 $('#no-results-message').text(`Unable to find results for ${searchTerm}.`);
             })
@@ -46,7 +48,7 @@ function displayResults(responseJson) {
     console.log(responseJson);
     const searchTerm = $('#search-term').val();
     $('#loader').hide();
-    $('#results').append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
+    $('.results-head').removeClass('hidden');
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
@@ -131,9 +133,9 @@ function watchForm() {
         const searchTerm = $('#search-term').val();
         pageNum = 0;
         $('#results').empty();
-        $('#results').removeClass('hidden').fadeIn(1000);
-        $('main').removeClass('hidden').fadeIn(1000);
-        // show loader animation
+        $('#results').removeClass('hidden');
+        $('main').removeClass('hidden');
+        $('#results').append(`<h3 class="results-head hidden">Events Near ${searchTerm}</h3>`);
         $('#loader').show();
         // hide view more button if unable to find results
         $('.more').addClass('hidden');
