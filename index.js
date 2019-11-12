@@ -45,9 +45,8 @@ function formatQueryParams(params) {
 function displayResults(responseJson) {
     console.log(responseJson);
     const searchTerm = $('#search-term').val();
-    let first = true;
-    $('#loader').show(2000);
-    $('#loader').hide(); 
+    $('#loader').hide();
+    $('#results').append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
     // iterate through the events in json response
     for (let i = 0; i < responseJson["_embedded"]["events"].length; i++) {
         let image = responseJson["_embedded"]["events"][i].images[0].url;
@@ -67,10 +66,12 @@ function displayResults(responseJson) {
             <div class="event-day item">${day}</div>
             </div>
             <div class="event-name item">${name}</div>
-            <div class="venue-city">
-            <div class="event-venue item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${venue}</a></div>
+            <div class="venue-address-city">
+            <div class="event-venue item"><strong><a href="https://www.google.com/search?q=${venue}" target="_blank">${venue}</a></strong></div>
+            <div class="address-city">
+            <div class="event-address item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${address}</a></div>
             <div class="event-city item"><a href="https://maps.google.com/?q=${address} ${city}" target="_blank">${city}</a></div>
-            </div>
+            </div></div>
             <div class="social-media-container">`
         //  iterate through items that have attractions subfolder
         let eventDetails = responseJson["_embedded"]["events"][i]["_embedded"];
@@ -106,15 +107,15 @@ function displayResults(responseJson) {
     let currentPage = responseJson.page.number;
     let totalPages = responseJson.page.totalPages;
     // show more results button
-    $('.next').removeClass('hidden');
+    $('.more').removeClass('hidden');
     // remove more results button if on last page
     if (currentPage === totalPages-1) {
-        $('.next').addClass('hidden');
+        $('.more').addClass('hidden');
     }
 }
 
 function moreResults(responseJson) {
-    $(document).on('click', '.next', event => {
+    $(document).on('click', '.more', event => {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
         pageNum++
@@ -133,8 +134,9 @@ function watchForm() {
         $('main').removeClass('hidden').fadeIn(1000);
         // empty out any prior results
         $('#results').empty();
-        $('#results').delay(2000).append(`<h3 class="results-head">Events Near ${searchTerm}</h3>`);
-        getResults(searchTerm, pageNum);
+        // show loader
+        $('#loader').show();
+        setTimeout(getResults(searchTerm, pageNum)1500);
         // only call these functions if it is the first search
         if(first) {
             // prevPageResults();

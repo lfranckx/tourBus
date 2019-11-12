@@ -176,14 +176,14 @@ main {
 }
 
 .event-name {
-    width: 38%;
+    width: 20%;
     font-size: 15px;
     color: #f1f1f1;
 }
 
-.venue-city {
+.venue-address-city {
     display: inline;
-    width: 12%;
+    width: 20%;
 }
 
 .event-venue {
@@ -254,7 +254,12 @@ main {
     transition-duration: .4s;
 }
 
-.venue-city:hover {
+.event-venue:hover {
+    filter: brightness(180%);
+    transition-duration: .4s;
+}
+
+.address-city:hover {
     filter: brightness(180%);
     transition-duration: .4s;
 }
