@@ -133,11 +133,13 @@ function watchForm() {
         event.preventDefault();
         const searchTerm = $('#search-term').val();
         pageNum = 0;
-        $('#results').empty();
-        $('#results').removeClass('hidden');
-        $('main').removeClass('hidden');
-        $('#results').append(`<h3 class="results-head hidden">Events Near ${searchTerm}</h3>`);
-        $('#loader').show();
+        if (searchTerm !== "") {
+            $('#results').empty();
+            $('#results').removeClass('hidden');
+            $('main').removeClass('hidden');
+            $('#results').append(`<h3 class="results-head hidden">Events Near ${searchTerm}</h3>`);
+            $('#loader').show();
+        }
         // hide view more button if unable to find results
         $('.more').addClass('hidden');
         getResults(searchTerm, pageNum);
