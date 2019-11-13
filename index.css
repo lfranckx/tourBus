@@ -41,7 +41,7 @@ h1 {
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 24px;
 }
 
 .add-margin {
@@ -49,7 +49,7 @@ h3 {
 }
 
 .error {
-    font-size: 1.5em;
+    font-size: 24px;
 }
 
 /* SEARCH BAR */
@@ -190,13 +190,6 @@ main {
 .venue-address-city {
     display: inline;
     width: 20%;
-}
-
-.event-venue {
-    font-size: 15px;
-}
-
-.event-city {
     font-size: 15px;
 }
 
@@ -210,7 +203,7 @@ main {
 }
 
 #no-results-message {
-    font-size: 1.2em;
+    font-size: 20px;
     margin-bottom: 5px;
 }
 
@@ -273,4 +266,178 @@ main {
 .social-media-link:hover {
     filter: brightness(180%);
     transition-duration: .4s;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 700px) and (max-width: 1050px) {
+    .social-media-container {
+        display: none;
+    }
+    .thumbnail {
+        height: 75px;
+        width: 90px;
+    }
+
+    #search-bar {
+        height: 45px;
+        width: 300px;
+    }
+    
+    #search-term {
+        width: 320px;
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+    .error {
+        font-size: 18px;
+    }
+    #search-term {
+        font-size: 15px;
+    }
+    .event-month {
+        font-size: 11.25px;
+    }
+    .event-day {
+        font-size: 15px;
+    }
+    .event-name {
+        font-size: 11.25px;
+    }
+    .venue-address-city {
+        font-size: 11.25px;
+    }
+    #no-results-message {
+        font-size: 15px;
+    }
+    .event-link {
+        font-size: 12px;
+    }   
+}
+
+@media screen and (min-width: 580px) and (max-width: 699px) {
+     .event-image {
+         display: none;
+     }
+
+     .social-media-container {
+        display: none;
+    }
+
+    .event-address {
+        display: none;
+    }
+
+    .thumbnail {
+        height: 75px;
+        width: 90px;
+    }
+
+    #search-bar {
+        height: 45px;
+        width: 300px;
+    }
+    
+    #search-term {
+        width: 320px;
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+    .error {
+        font-size: 18px;
+    }
+    #search-term {
+        font-size: 15px;
+    }
+    .event-month {
+        font-size: 11.25px;
+    }
+    .event-day {
+        font-size: 15px;
+    }
+    .event-name {
+        font-size: 11.25px;
+    }
+    .venue-address-city {
+        font-size: 11.25px;
+    }
+    #no-results-message {
+        font-size: 15px;
+    }
+    .event-link {
+        font-size: 12px;
+    }    
+
+    @media screen and (max-width: 579px) {
+        .event-image {
+            display: none;
+        }
+   
+        .social-media-container {
+           display: none;
+       }
+       
+       .venue-address-city {
+           display: none;
+       }
+   
+       .thumbnail {
+           height: 75px;
+           width: 90px;
+       }
+   
+       #search-bar {
+           height: 45px;
+           width: 300px;
+       }
+       
+       #search-term {
+           width: 320px;
+           font-size: 15px;
+       }
+   
+       h1 {
+           font-size: 24px;
+       }
+   
+       h3 {
+           font-size: 18px;
+       }
+       .error {
+           font-size: 18px;
+       }
+       #search-term {
+           font-size: 15px;
+       }
+       .event-month {
+           font-size: 11.25px;
+       }
+       .event-day {
+           font-size: 15px;
+       }
+       .event-name {
+           font-size: 11.25px;
+       }
+       .venue-address-city {
+           font-size: 11.25px;
+       }
+       #no-results-message {
+           font-size: 15px;
+       }
+       .event-link {
+           font-size: 12px;
+       }    
 }

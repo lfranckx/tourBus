@@ -62,7 +62,7 @@ function displayResults(responseJson) {
         // declare empty string to concat multiple strings
         let string = ``;
         string += `<div class="event-container">
-            <div class="event-pictures item"><img class="thumbnail" src="${image}"></div>
+            <div class="event-image item"><img class="thumbnail" src="${image}"></div>
             <div class="event-date">
             <div class="event-month item">${month}</div>
             <div class="event-day item">${day}</div>
