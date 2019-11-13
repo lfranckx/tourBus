@@ -193,6 +193,10 @@ main {
     font-size: 15px;
 }
 
+.event-venue a {
+    color: #e87b60;
+}
+
 .social-media-container {
     display: inline;
     width: 10%
