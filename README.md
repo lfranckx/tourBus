@@ -1,12 +1,9 @@
-Helps users such as artists, musicians, and people looking for live music find venues within a city.
-Uses songkick's api to get data on venues within a city.
-Displays a list of venues with their name, description, location, venue size, and contact.
+This app is designed to help users find shows happening in their city that current day and afterward.
+It uses Ticketmaster's API to get information on venues the artists performing and displays that
+information.  The user can enter in a city.  It pulls up a list of events.  The user can select on
+the venue it will send you to google's information on the veune.  The user can select the address and 
+have the address opened on google maps.  The user can select the buy tickets button and have them
+redirected to Ticketmaster's url for buying tickets for that event.  Eventually will add more to the 
+site as I progress through the curriculum.
 
-UPDATE:
-Changed the original plan because I never received a key from songkick.
-Used ticketmaster's api, but ran into several hurtles with trying to get details on 
-the venue information based on a given city.  Decided with the time constraint it would
-be better to change the app to be for finding live music events within a certain radius 
-of a given city.  When entering in the city it will give a name of the event. The date
-of the event.  The artists playing.  Link to buy tickets and a link to get directions
-from google maps.
+https://lfranckx.github.io/tourBus/
