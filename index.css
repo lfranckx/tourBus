@@ -319,6 +319,10 @@ main {
     .event-link {
         font-size: 12px;
     }   
+    .more {
+        font-size: 11.25px;
+        width: 225px;
+    }
 }
 
 @media screen and (min-width: 580px) and (max-width: 699px) {
@@ -380,8 +384,17 @@ main {
     .event-link {
         font-size: 12px;
     }    
+    .more {
+        font-size: 11.25px;
+        width: 225px;
+    }
+}
 
-    @media screen and (max-width: 579px) {
+    @media screen and (min-width: 430px) and (max-width: 579px) {
+        main {
+            padding: 20px;
+        }
+
         .event-image {
             display: none;
         }
@@ -390,7 +403,11 @@ main {
            display: none;
        }
        
-       .venue-address-city {
+       /* .venue-address-city {
+           display: none;
+       } */
+
+       .event-address {
            display: none;
        }
    
@@ -440,4 +457,78 @@ main {
        .event-link {
            font-size: 12px;
        }    
+       .more {
+           font-size: 11.25px;
+           width: 150px;
+       }
+    }
+
+    @media screen and (max-width: 429px) {
+        main {
+            padding: 20px;
+        }
+
+        .event-image {
+            display: none;
+        }
+   
+        .social-media-container {
+           display: none;
+       }
+
+       .venue-address-city {
+            display: none;
+       }
+   
+       .thumbnail {
+           height: 75px;
+           width: 90px;
+       }
+   
+       #search-bar {
+           height: 45px;
+           width: 300px;
+       }
+       
+       #search-term {
+           width: 320px;
+           font-size: 15px;
+       }
+   
+       h1 {
+           font-size: 24px;
+       }
+   
+       h3 {
+           font-size: 18px;
+       }
+       .error {
+           font-size: 18px;
+       }
+       #search-term {
+           font-size: 15px;
+       }
+       .event-month {
+           font-size: 11.25px;
+       }
+       .event-day {
+           font-size: 15px;
+       }
+       .event-name {
+           font-size: 11.25px;
+       }
+       .venue-address-city {
+           font-size: 11.25px;
+       }
+       #no-results-message {
+           font-size: 15px;
+       }
+       .event-link {
+           font-size: 12px;
+       }    
+       .more {
+           font-size: 11.25px;
+           width: 150px;
+       }
+    }
 }
