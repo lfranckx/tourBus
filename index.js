@@ -1,3 +1,4 @@
+'use strict';
 const apikey = "JMjb9sqreGtV3ebvSVRfOTYbb5EiD8Ov";
 const baseURL = "https://app.ticketmaster.com/discovery/v2/events.json";
 let pageNum = 0;
