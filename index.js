@@ -30,7 +30,7 @@ function getResults(searchTerm, pageNum) {
                 $('.results-head').hide();
                 $('#no-results-message').show();
                 $('#no-results-message').removeClass('hidden');
-                $('#no-results-message').text(`Unable to find results for ${searchTerm}.`);
+                $('#no-results-message').text(`Unable to find results for ${searchTerm}`);
             })
     }
 }
