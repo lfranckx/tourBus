@@ -221,14 +221,6 @@ main {
 }
 
 /* BUTTONS SECTION */
-#submit:active {
-    background-color: #f15731;
-    color: #2f3640;
-}
-
-#submit:hover {
-    -webkit-transform: scale(1.05);
-}
 
 .tickets-button {
     margin-left: 5px;
