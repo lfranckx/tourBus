@@ -11,12 +11,14 @@
     </head>
     <body>
         <header>
+            <!-- <img id="logo" src="images/tourbus.png"> -->
             <h1 class="add-margin">Tour Bus</h1>
             <form id="search-bar">
+                <label for="search-bar"></label>
                 <button type="submit" class="search-button"><i id="submit" class="fas fa-search"></i></button>
                 <input type="text" name="search-term" id="search-term" placeholder="Search by city">
             </form>
-            <h3 class="add-margin">Find live music happening in your city.</h3>
+            <h2 class="add-margin">Find live music happening in your city.</h3>
         </header>
         
         <main class="hidden">
@@ -27,7 +29,7 @@
                     <span></span>
                     <span></span>
                 </div>
-                <h3 id="no-results-message" class="error hidden"></h3>
+                <p id="no-results-message" class="error hidden"></p>
                 <input class="more more-results-button buttons" type="submit" value="View More Results"></input>
             </div>
         </main>
