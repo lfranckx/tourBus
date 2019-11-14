@@ -80,6 +80,11 @@ h3 {
 
 .search-button {
     all: unset;
+    height: 25px;
+    width: 25px;
+    margin-left: 4px;
+    margin-right: 8px;
+    cursor: pointer;
 }
 
 #submit {
